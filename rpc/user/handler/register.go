@@ -15,7 +15,6 @@ func (this *UserHandlerEr) Register(ctx context.Context, req *user.RegisterReque
 		Username: req.Username,
 		Gender:   int(req.Gender),
 		CampusID: uint64(req.Campus),
-		Pic:      req.File,
 	}
 	res, err := global.DB.NamedExec("insert into user (email, password, username, gender, campus_id, pic) values (:email, :password, :username, :gender, :campus_id, :pic)", user)
 	if err != nil {
