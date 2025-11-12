@@ -6,9 +6,10 @@ import (
 	"compus-second-hand/global"
 	user "compus-second-hand/rpc/user/pb"
 	"context"
+	"fmt"
 )
 
-func (this *UserHandlerEr) Register(ctx context.Context, req *user.RegisterRequest, resp *user.RegisterResponse) error {
+func (*UserHandlerEr) Register(ctx context.Context, req *user.RegisterRequest, resp *user.RegisterResponse) error {
 	user := &model.User{
 		Email:    req.Email,
 		Password: req.Password,
@@ -27,13 +28,13 @@ func (this *UserHandlerEr) Register(ctx context.Context, req *user.RegisterReque
 		case 3:
 			resp.Code = 3 // 空值约束冲突
 		default:
-			return err // 未知错误
+			return fmt.Errorf("注册插入失败: %w", err) // 未知错误
 		}
 	}
 	id, err := res.RowsAffected()
 	if err != nil {
 		// 插入失败
-		return err
+		return fmt.Errorf("注册插入失败: %w", err)
 	}
 	if id == 0 {
 		resp.Code = 4 // 插入失败

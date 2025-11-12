@@ -49,7 +49,8 @@ func initRouter() {
 		v1 := global.Engine.Group("/v1")
 		{
 			user := v1.Group("/user")
-			user.POST("/register", userHandler.Register)
+			user.POST("/register", userHandler.Register())
+			user.POST("/login", userHandler.Login())
 		}
 	}
 }

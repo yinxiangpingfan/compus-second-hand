@@ -16,21 +16,27 @@ var Engine *gin.Engine
 var Configs Config
 
 type Config struct {
-	Server ServerConfig `mapstructure:"server" yaml:"server"`
-	MySQL  MySQLConfig  `mapstructure:"mysql"  yaml:"mysql"`
+	Server ServerConfig `yaml:"server"`
+	MySQL  MySQLConfig  `yaml:"mysql"`
+	JWT    JWTConfig    `yaml:"jwt"`
 }
 
 type ServerConfig struct {
-	APIHost  string `mapstructure:"apiHost" yaml:"apiHost"`
-	APIPort  int    `mapstructure:"apiPort" yaml:"apiPort"`
-	UserHost string `mapstructure:"userHost" yaml:"userHost"`
-	UserPort int    `mapstructure:"userPort" yaml:"userPort"`
+	APIHost  string `yaml:"apiHost"`
+	APIPort  int    `yaml:"apiPort"`
+	UserHost string `yaml:"userHost"`
+	UserPort int    `yaml:"userPort"`
 }
 
 type MySQLConfig struct {
-	User     string `mapstructure:"user"     yaml:"user"`
-	Password string `mapstructure:"password" yaml:"password"`
-	Host     string `mapstructure:"host"     yaml:"host"`
-	Port     int    `mapstructure:"port"     yaml:"port"`
-	Name     string `mapstructure:"name"     yaml:"name"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	Name     string `yaml:"name"`
+}
+
+type JWTConfig struct {
+	SecretKey  string `yaml:"secretKey"`
+	ExpireTime int64  `yaml:"expireTime"`
 }

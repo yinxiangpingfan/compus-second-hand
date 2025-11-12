@@ -7,9 +7,9 @@ import (
 )
 
 const (
-	DBErrUnique  uint16 = 1062
-	DBErrFK      uint16 = 1452
-	DBErrBadNull uint16 = 1048
+	DBErrUnique  uint16 = 1062 //唯一键冲突
+	DBErrFK      uint16 = 1452 //外键约束冲突
+	DBErrBadNull uint16 = 1048 //空值约束冲突
 )
 
 func CheckError(err error) int {
